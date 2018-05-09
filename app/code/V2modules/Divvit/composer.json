@@ -1,0 +1,21 @@
+{
+    "name": "v2modules/divvit",
+    "description": "Module for divvit export",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "rubaktaras@gmail.com",
+            "name": "Taras Rubak"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "V2modules\\Avito\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

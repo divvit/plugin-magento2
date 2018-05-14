@@ -5,7 +5,7 @@ pipeline {
       steps {
         git(url: 'git@bitbucket.org:divvit/divvit-plugin-magento2-suite.git', branch: 'master')
         echo 'Hello'
-        sh 'git status'
+        sh 'ls'
       }
     }
   }

@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('Checkout Suite') {
       steps {
+        sh 'ls -al'
         git(url: 'git@bitbucket.org:divvit/divvit-plugin-magento2-suite.git', branch: 'master')
-        echo 'Hello'
-        sh 'ls'
+        sh 'ls -al'
       }
     }
   }

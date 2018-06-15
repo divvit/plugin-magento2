@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © 2015 v2modulescommerce. All rights reserved.
+ */
+?>
+<?php
+/**
+ * {{controller}} {{action}} template
+ *
+ * @var $block \V2modules\Divvit\Block\Adminhtml\Statistic\Index
+ */
+?>
+<script type="text/javascript" >
+	var DIVVIT_PLUGIN_SECURE_KEY = "<?=$block->secure_key ?>";
+	var DIVVIT_APP_URL = "<?=$block->app_url?>";
+
+	window.addEventListener('message', function(event) {
+	  if (event.origin !== window.DIVVIT_APP_URL) return;
+	  var data = event.data.split(':')
+	  var key = data[0]
+	  var value = data[1]
+
+	  switch (key) {
+		case 'height':
+		  var divvitIframe = document.getElementById('divvit_iframe')
+		  divvitIframe.setAttribute('height', value)
+		  break
+
+		case 'frontendId':
+		  jQuery.post('<?=$block->backendUrl?>', {
+			secure_key: window.DIVVIT_PLUGIN_SECURE_KEY,
+			action: 'updateFrontendId',
+			frontendId: value
+		  })
+		  break
+		case 'resetFrontendId':
+		  jQuery.post('<?=$block->backendUrl?>', {
+			secure_key: window.DIVVIT_PLUGIN_SECURE_KEY,
+			action: 'resetFrontendId'
+		  })
+		  break
+
+		default:
+		  return
+	  }
+	}, false)	
+</script>
+
+<div class="panel">
+	<h3>Divvit</h3>
+	<?php if ($block->is_accesss()) : ?>
+		<iframe src="<?=$block->app_url?>/prestashop?embedded=prestashop&email=<?=$block->userdata['email'] ?>&frontendId=<?=$block->_merchant?>&__trackerToken=<?=$block->_token?>" width="100%" height="700" border="0" id="divvit_iframe"></iframe>
+	<?php else : ?>
+		<iframe src="<?=$block->app_url?>/prestashop?embedded=prestashop&platform=prestashop&email=<?=$block->userdata['email'] ?>&firstName=<?=$block->userdata['firstname'] ?>&lastName=<?=$block->userdata['lastname'] ?>&url=<?=$block->userdata['url'] ?>&currency=<?=$block->userdata['currency'] ?>&timezone=<?=$block->userdata['timezone'] ?>&industry=other" width="100%" height="700" border="0" id="divvit_iframe"></iframe>
+	<?php endif ?>
+</div>

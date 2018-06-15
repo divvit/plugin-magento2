@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 V2modules. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="V2modules_Divvit::v2modules_statisticindex" title="Divvit" module="V2modules_Divvit"  sortOrder="20" dependsOnModule="V2modules_Divvit" action="divvit/statistic/index" resource="V2modules_Divvit::v2modules_statisticindex"/>
+<!--AddMenu-->
+    </menu>
+</config>

@@ -55,8 +55,9 @@ class Index extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-		if (isset($_POST['action']) and isset($_POST['secure_key']) and $_POST['secure_key']==md5('divvit')) {
-			switch ($_POST['action']){
+		$post = $this->getRequest()->getPostValue();
+		if (isset($post['action']) and isset($post['secure_key']) and $post['secure_key']==md5('divvit')) {
+			switch ($post['action']){
 				case 'updateFrontendId' : return $this->updateFrontendId();
 				case 'resetFrontendId' : return $this->resetFrontendId();
 				default : /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
@@ -71,8 +72,9 @@ class Index extends \Magento\Backend\App\Action
     }
 	
 	protected function updateFrontendId(){
-		if (isset($_POST['frontendId']))
-			$this->_configWriter->save('divvit/general/merchan_id', $_POST['frontendId'], 'default', 0);
+		$post = $this->getRequest()->getPostValue();
+		if (isset($post['frontendId']))
+			$this->_configWriter->save('divvit/general/merchan_id', $post['frontendId'], 'default', 0);
 		$this->getDivvitAuthToken();
 		
 		$resultPage = $this->resultPageFactory->create(\Magento\Framework\Controller\ResultFactory::TYPE_JSON);

@@ -82,5 +82,3 @@ class CartSaveAfter implements ObserverInterface {
         return $products;
     }
 }
-
-?>

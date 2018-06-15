@@ -55,12 +55,14 @@ class Index extends Action
         if ($accessToken) {
             $afterOrderId = $this->request->getParam("after", 0);
             $orders = $this->getOrders($afterOrderId);
-            echo json_encode($orders);
-            exit();
+			$result = $this->resultJsonFactory->create();
+			$result->setData($orders);
+            return $result;
         } else {
-            http_response_code(401);
-            header("Status: UNAUTHORIZED");
-            exit();
+			$resultPage = $this->resultPageFactory->create();
+			$resultPage->setHeader('Status', 'UNAUTHORIZED');
+			$resultPage->setHttpResponseCode(401);
+			return $resultPage;
         }
 	}
 	

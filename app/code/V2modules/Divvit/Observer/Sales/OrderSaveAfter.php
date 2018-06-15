@@ -73,5 +73,3 @@ class OrderSaveAfter implements ObserverInterface {
         return $products;
     }
 }
-
-?>
